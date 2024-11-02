@@ -1,0 +1,49 @@
+@import 'styles/variables.scss';
+
+.card {
+    max-width: 360px;
+    padding-bottom: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+    background-color: #fff;
+
+    &:hover {
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    &-header {
+        background-color: #d9d9d9;
+        max-width: 360px;
+        max-height: 360px;
+
+        img {
+            display: block;
+            object-fit: contain;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        gap: $space-l;
+        padding-left: $space-xs;
+        padding-right: $space-xs;
+    }
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &-action {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $space-xxs;
+    }
+
+}

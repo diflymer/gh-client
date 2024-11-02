@@ -1,0 +1,35 @@
+@use 'styles/variables.scss';
+
+.btn {
+    min-height: 52px;
+    padding: $space-s $space-l;
+    display: flex;
+    align-items: center;
+    gap: $space-xxs;
+    border: none;
+    color: #FFF;
+    font-family: 'Roboto';
+
+    &_bg {
+
+        background-color: $brand;
+
+        &-active:active {
+            background-color: $brand-active;
+        }
+
+        &-hover:hover {
+            background-color: $brand-hover;
+        }
+
+        &-disabled {
+            background-color: #D9D9D9;
+        }
+    }
+
+    &_loader {
+        color: #FFF !important;
+        transition: color 0.3s ease;
+    }
+
+}

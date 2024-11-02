@@ -1,0 +1,36 @@
+@import 'styles/variables.scss';
+
+.input-field {
+    width: 100%;
+    height: 52px;
+    padding: $space-s $space-xs;
+    display: flex;
+    gap: $space-xxs;
+    background-color: white;
+    border: 1px solid #fff;
+
+    &:focus-within {
+        border: 1px solid $brand;
+    }
+
+    input {
+        flex: 1;
+        border: none;
+        background-color: unset;
+        padding: 0px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 400;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 400;
+            color: #AFADB5;
+        }
+    }
+}

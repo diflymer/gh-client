@@ -1,0 +1,13 @@
+@import 'styles/variables';
+
+.icon_color-primary {
+    color: #000;
+}
+
+.icon_color-secondary {
+    color: rgb(175, 173, 181);
+}
+
+.icon_color-accent {
+    color: $brand;
+}
