@@ -35,17 +35,19 @@ const Card: React.FC<CardProps> = (props) => {
             <div className={s['card-body']}>
                 <div className={s['card-text']}>
                     {props.captionSlot &&
-                        <Text view='p-14' color='secondary'>{props.captionSlot}</Text>
+                        <Text view='p-14-wlh' weight='medium' color='secondary'>{props.captionSlot}</Text>
                     }
                     <Text view='p-20' color='primary' maxLines={2} weight='medium'>{props.title}</Text>
                     <Text view='p-16' color='secondary' maxLines={3}>{props.subtitle}</Text>
                 </div>
-                <div className={s['card-action']}>
-                    {props.contentSlot &&
-                        <Text view='p-18' color='primary' weight='bold'>{props.contentSlot}</Text>
-                    }
-                    {props.actionSlot}
-                </div>
+                {props.contentSlot || props.actionSlot &&
+                    <div className={s['card-action']}>
+                        {props.contentSlot &&
+                            <Text view='p-18' color='primary' weight='bold'>{props.contentSlot}</Text>
+                        }
+                        {props.actionSlot}
+                    </div>
+                }
             </div>
         </div>
     )

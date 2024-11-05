@@ -1,4 +1,4 @@
-@import 'styles/variables.scss';
+@use 'styles/variables.scss' as *;
 
 .text {
     &_view {
@@ -37,6 +37,11 @@
             line-height: 18px;
             font-weight: 400;
         }
+
+        &-p-14-wlh {
+            font-size: 14px;
+            font-weight: 400;
+        }
     }
 
     &_color {
@@ -53,7 +58,7 @@
         }
     }
 
-    &_weigth {
+    &_weight {
         &-normal {
             font-weight: normal;
         }

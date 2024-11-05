@@ -1,0 +1,15 @@
+@use 'styles/variables' as *;
+
+.topics {
+    display: flex;
+    gap: $space-xxs;
+
+    .topic {
+        padding: 4px 16px;
+        border-radius: 16px;
+        background-color: #DAEDFF;
+        color: #0066CC;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}

@@ -1,0 +1,17 @@
+@use 'styles/variables' as *;
+
+.readme {
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+
+    &-header {
+        padding: $space-m;
+        color: #000;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    &-body {
+        padding: 32px;
+    }
+}

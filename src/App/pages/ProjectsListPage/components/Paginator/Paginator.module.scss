@@ -1,0 +1,25 @@
+@use 'styles/variables' as *;
+
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    .pages {
+        display: flex;
+
+        .page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 42px;
+        }
+
+        .page-active {
+            color: white;
+            background-color: $brand;
+        }
+    }
+}

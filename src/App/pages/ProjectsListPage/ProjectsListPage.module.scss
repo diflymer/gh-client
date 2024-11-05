@@ -1,0 +1,45 @@
+@use 'styles/variables' as *;
+
+.page {
+    display: flex;
+    gap: 60px;
+    flex-direction: column;
+
+    .title {
+        text-align: center;
+    }
+
+    .section {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+
+            &-header {
+                display: flex;
+                flex-direction: column;
+                gap: $space-l;
+
+                &-mdd {
+                    width: 300px;
+                }
+
+                .search-field {
+                    display: flex;
+                    gap: $space-l;
+
+                    p {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+
+            }
+
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.project {
+    width: 360px;
+
+    .caption {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .star {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+
+            span {
+                line-height: 16.8px;
+            }
+        }
+    }
+}

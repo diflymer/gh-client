@@ -1,13 +1,15 @@
-@import 'styles/variables.scss';
+@use 'styles/variables.scss' as *;
 
 .multidropdown {
     display: flex;
     flex-direction: column;
     gap: $space-xxs;
+    border-radius: $border-radius;
 
     .select-options {
         background-color: #fff;
         box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+        border-radius: $border-radius;
 
         .option {
             width: 100%;

@@ -1,0 +1,15 @@
+@use 'styles/variables' as *;
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .stars,
+    .watchers,
+    .forks {
+        display: flex;
+        align-items: center;
+        gap: $space-xxs;
+    }
+}

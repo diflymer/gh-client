@@ -33,7 +33,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
   let [options, setOptions] = React.useState(props.options);
 
   const toggleSelect = () => {
-    if (props.disabled === undefined || props.disabled === false){
+    if (props.disabled === undefined || props.disabled === false) {
+      setOpened(prev => !prev);
+    }
+  }
+
+  const openSelect = () => {
+    if (props.disabled === undefined || props.disabled === false) {
       setOpened(true);
     }
   }
@@ -61,14 +67,14 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
   }
 
   const chooseOption = (option: Option) => {
-    let valueKeys = values.map((value:Option) => value.key);
-    if (valueKeys.includes(option.key)){
-      props.onChange(values.filter( (value:Option) => value.value !== option.value));
+    let valueKeys = values.map((value: Option) => value.key);
+    if (valueKeys.includes(option.key)) {
+      props.onChange(values.filter((value: Option) => value.value !== option.value));
       setValues((prev: any[]) => prev.filter(value => value.value !== option.value));
     } else {
       // props.onChange([...values, option]); Не проходит тест
       props.onChange([option]); //Проходит тест
-      setValues((prev:Option[]) => [...prev, option]);
+      setValues((prev: Option[]) => [...prev, option]);
     }
   }
 
@@ -89,7 +95,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   let [inputValue, setInputValue] = React.useState("")
 
-  const changeInputValue = (value:string) => {
+  const changeInputValue = (value: string) => {
     setInputValue(value);
   }
 
@@ -104,21 +110,21 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   return (
     <div className={multiDropdownclass} ref={dropdownRef}>
-        <Input value={opened ? inputValue : ( values.length === 0 ? '' : props.getTitle(values) )} placeholder={opened ? props.getTitle(values) : ""} onChange={changeInputValue} disabled={props.disabled || false}
-        afterSlot={<ArrowDownIcon color="secondary"/>} onClick={ toggleSelect }/>
+      <Input value={opened ? inputValue : (values.length === 0 ? '' : props.getTitle(values))} placeholder={opened ? props.getTitle(values) : ""} onChange={changeInputValue} disabled={props.disabled || false}
+        afterSlot={<ArrowDownIcon color="secondary" onClick={toggleSelect} />} onClick={openSelect} />
       {opened &&
         <>
           <div className={s['select-options']}>
             {options.map(
-              option => 
-              <div className={cn(s['option'], getValues(values).includes(option.value) && s['option-selected'])} key={option.key} onClick={() => {chooseOption(option)}}>
-                {option.value}
-              </div>
+              option =>
+                <div className={cn(s['option'], getValues(values).includes(option.value) && s['option-selected'])} key={option.key} onClick={() => { chooseOption(option) }}>
+                  {option.value}
+                </div>
             )}
           </div>
         </>
       }
-    </div> 
+    </div>
   )
 };
 

@@ -1,4 +1,4 @@
-@use 'styles/variables.scss';
+@use 'styles/variables.scss' as *;
 
 .btn {
     min-height: 52px;
@@ -9,6 +9,7 @@
     border: none;
     color: #FFF;
     font-family: 'Roboto';
+    border-radius: $border-radius;
 
     &_bg {
 

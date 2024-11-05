@@ -1,0 +1,17 @@
+@use 'styles/variables' as *;
+
+.app {
+    padding: 0 $space-app;
+}
+
+.projects-bg {
+    background-color: #F6F8FA;
+}
+
+.project-detail-bg {
+    background-color: #FFF;
+}
+
+.default-bg {
+    background-color: unset;
+}

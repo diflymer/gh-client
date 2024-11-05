@@ -1,0 +1,16 @@
+.header {
+    height: 64px;
+    background-color: #F6F8FA;
+    border-bottom: 2px solid #D9D9D9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 100px;
+
+    .left-part {
+        display: flex;
+        align-items: center;
+        gap: 56px;
+    }
+}

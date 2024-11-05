@@ -1,0 +1,45 @@
+@use 'styles/variables' as *;
+
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &-header {
+        display: flex;
+        align-items: center;
+        gap: $space-m;
+        padding-bottom: 16px;
+
+        &-arrow-right {
+            color: $brand;
+        }
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .link {
+            display: flex;
+            gap: $space-xxs;
+
+            a {
+                text-decoration: none;
+            }
+
+            &-text {
+                color: #0080FF;
+            }
+
+        }
+
+        .contributors-langs {
+            display: flex;
+            gap: 80px;
+        }
+
+    }
+
+}
