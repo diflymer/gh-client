@@ -1,7 +1,8 @@
 @use 'styles/variables' as *;
 
 .app {
-    padding: 0 $space-app;
+    padding: 0 $space-app-x;
+    padding-bottom: $space-app-bottom;
 }
 
 .projects-bg {
