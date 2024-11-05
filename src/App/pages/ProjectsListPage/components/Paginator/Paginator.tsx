@@ -5,7 +5,7 @@ import cn from 'classnames'
 
 interface PaginatorProps {
     currentPage: number,
-    setPage: (page: number) => void,
+    setPage: (page: number | ((prev: number) => number)) => void
     lastPage: number
 }
 

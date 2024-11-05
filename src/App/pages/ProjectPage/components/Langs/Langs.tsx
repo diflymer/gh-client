@@ -45,25 +45,27 @@ const Langs: FC<LangsProps> = ({ langsURL }) => {
 
     }, [langsURL]);
 
-    const [langs, setLangs] = useState<Lang[]>([]);
+    const [langs, setLangs] = useState<Lang[] | undefined>(undefined);
 
     return (
+        langs &&
         <div className={s.langs}>
             <Text view='p-18' weight='bold'>Languages</Text>
             <div className={s['langs-line']}>
                 {langs.map((lang, i) => (
-                    <div className={s[`langs-line-colors-${i + 1}`]} style={{ width: `${lang.percentage}%` }}></div>
+                    <div key={`line-${lang.name}`} className={s[`langs-line-colors-${i + 1}`]} style={{ width: `${lang.percentage}%` }}></div>
                 ))}
             </div>
             <div className={s['langs-list']}>
                 {langs.map((lang, i) => (
-                    <div className={s['langs-list__item']}>
+                    <div className={s['langs-list__item']} key={lang.name}>
                         <div className={cn(s['langs-list__item-circle'], s[`langs-line-colors-${i + 1}`])}></div>
                         <Text view='p-14' weight='medium'>{lang.name}</Text>
                         <Text view='p-14' color='secondary'>{lang.percentage}%</Text>
                     </div>
                 ))}
             </div>
+
         </div>
     )
 }

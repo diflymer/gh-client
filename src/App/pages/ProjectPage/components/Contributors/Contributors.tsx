@@ -24,11 +24,14 @@ const Contributors: FC<ContributorsProps> = ({ contributorsURL }) => {
                 url: contributorsURL,
             });
 
-            setContributors(response.data.map((raw: any) => ({
-                id: raw.id,
-                login: raw.login,
-                avatar_url: raw.avatar_url
-            })))
+            if (response.data) {
+                setContributors(response.data.map((raw: any) => ({
+                    id: raw.id,
+                    login: raw.login,
+                    avatar_url: raw.avatar_url
+                })))
+            }
+
 
         }
         fetch();

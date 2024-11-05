@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import s from './Header.module.scss';
 import Logo from './components/Logo';
 import Text from '../../../components/Text';

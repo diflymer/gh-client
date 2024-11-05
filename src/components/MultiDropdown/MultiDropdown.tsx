@@ -72,8 +72,8 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
       props.onChange(values.filter((value: Option) => value.value !== option.value));
       setValues((prev: any[]) => prev.filter(value => value.value !== option.value));
     } else {
-      // props.onChange([...values, option]); Не проходит тест
-      props.onChange([option]); //Проходит тест
+      props.onChange([...values, option]); //Не проходит тест
+      // props.onChange([option]); Проходит тест
       setValues((prev: Option[]) => [...prev, option]);
     }
   }
@@ -110,8 +110,8 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   return (
     <div className={multiDropdownclass} ref={dropdownRef}>
-      <Input value={opened ? inputValue : (values.length === 0 ? '' : props.getTitle(values))} placeholder={opened ? props.getTitle(values) : ""} onChange={changeInputValue} disabled={props.disabled || false}
-        afterSlot={<ArrowDownIcon color="secondary" onClick={toggleSelect} />} onClick={openSelect} />
+      <Input value={opened ? inputValue : (values.length === 0 ? '' : props.getTitle(values))} placeholder={props.getTitle(values)} onChange={changeInputValue} disabled={props.disabled || false}
+        afterslot={<ArrowDownIcon color="secondary" onClick={toggleSelect} />} onClick={openSelect} />
       {opened &&
         <>
           <div className={s['select-options']}>

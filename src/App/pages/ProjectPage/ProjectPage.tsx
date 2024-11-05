@@ -87,17 +87,19 @@ const ProjectPage = () => {
                 <Text view='title'>{project.title}</Text>
             </div>
             <div className={s['page-body']}>
-                <div className={s.link}>
-                    <LinkIcon />
-                    <a href={project.homepage}>
-                        <Text view='p-16' weight='bold' className={s['link-text']}>{project.homepage.substring(8)}</Text>
-                    </a>
-                </div>
+                {project.homepage &&
+                    <div className={s.link}>
+                        <LinkIcon />
+                        <a href={project.homepage}>
+                            <Text view='p-16' weight='bold' className={s['link-text']}>{project.homepage.substring(8)}</Text>
+                        </a>
+                    </div>
+                }
                 <Topics topics={project.topics} />
                 <Stats stats={project.stats} />
                 <div className={s['contributors-langs']}>
-                    <Contributors contributorsURL={project.contributorsURL} />
-                    <Langs langsURL={project.languagesURL} />
+                    {project.contributorsURL && <Contributors contributorsURL={project.contributorsURL} />}
+                    {project.languagesURL && <Langs langsURL={project.languagesURL} />}
                 </div>
             </div>
             <Readme />

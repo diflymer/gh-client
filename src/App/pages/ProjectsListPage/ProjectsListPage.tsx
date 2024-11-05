@@ -1,6 +1,6 @@
 import Text from "../../../components/Text";
 import s from "./ProjectsListPage.module.scss"
-import MultiDropdown, { Option } from "../../../components/MultiDropdown";
+import MultiDropdown from "../../../components/MultiDropdown";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import SearchIcon from "./components/SearchIcon";
@@ -68,7 +68,7 @@ const ProjectsListPage = () => {
                 <div className={s['content']}>
 
                     <div className={s['content-header']}>
-                        <MultiDropdown className={s['content-header-mdd']} options={[]} value={[]} onChange={() => { }} getTitle={() => ""} />
+                        <MultiDropdown className={s['content-header-mdd']} options={[]} value={[]} onChange={() => { }} getTitle={() => "Type"} />
                         <div className={s['search-field']}>
                             <Input value={""} onChange={() => { }} placeholder="Enter organization name" />
                             <Button><SearchIcon /></Button>

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import s from './Readme.module.scss'
+import 'github-markdown-css/github-markdown.css'
+import cn from 'classnames'
 
 const Readme = () => {
 
@@ -17,8 +19,6 @@ const Readme = () => {
                 url: `https://api.github.com/repos/${params.owner}/${params.repo}/readme`,
             });
 
-            console.log(result)
-
             setReadmeContent(result.data)
         }
 
@@ -26,12 +26,14 @@ const Readme = () => {
 
     }, [])
 
-    let [readmeContent, setReadmeContent] = useState();
+    let [readmeContent, setReadmeContent] = useState<TrustedHTML | undefined>();
 
     return (
         <div className={s.readme}>
             <div className={s['readme-header']}>README.md</div>
-            <div className={s['readme-body']} dangerouslySetInnerHTML={{ __html: readmeContent }}></div>
+            {readmeContent &&
+                <div className={cn(s['readme-body'], 'markdown-body')} dangerouslySetInnerHTML={{ __html: readmeContent }}></div>
+            }
         </div>
     )
 }
