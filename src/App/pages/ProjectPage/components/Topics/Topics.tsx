@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import s from './Topics.module.scss';
 
-interface TopicsProps {
+type TopicsProps = {
     topics: string[];
 }
 

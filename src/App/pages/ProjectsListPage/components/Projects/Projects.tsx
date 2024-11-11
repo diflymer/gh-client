@@ -1,9 +1,10 @@
 import Project from './components/Project/';
 import s from './Projects.module.scss'
-import { ProjectType } from './components/Project/Project';
+import { ProjectModel } from '../../../../../store/models/gitHub'
+import { observer } from 'mobx-react-lite';
 
 type ProjectsProps = {
-    projects: ProjectType[]
+    projects: ProjectModel[]
 }
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
@@ -15,4 +16,4 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
     )
 }
 
-export default Projects;
+export default observer(Projects);

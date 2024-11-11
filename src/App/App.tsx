@@ -4,14 +4,17 @@ import ProjectsListPage from './pages/ProjectsListPage'
 import ProjectPage from './pages/ProjectPage'
 import Header from './components/Header'
 import { useEffect } from 'react'
+import { useQueryParamsStoreInit } from '../store/RootStore/hooks/useQueryParamsStoreInit'
 
 const App = () => {
 
+  useQueryParamsStoreInit();
+
+  //Изменение цвета фона на разных страницах
   const location = useLocation();
 
   useEffect(() => {
     const body = document.body;
-
     body.classList.remove(s['projects-bg'], s['project-detail-bg']);
 
     if (location.pathname === '/') {

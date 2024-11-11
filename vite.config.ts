@@ -22,4 +22,11 @@ export default defineConfig({
   resolve: {
     alias: parseTsConfigPaths(tsconfig.compilerOptions.paths),
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern"
+      }
+    }
+  }
 })

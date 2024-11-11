@@ -3,6 +3,7 @@ import s from './MultiDropdown.module.scss'
 import Input from '../Input';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
 import cn from 'classnames';
+import { set } from 'mobx';
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -17,13 +18,13 @@ export type MultiDropdownProps = {
   /** Массив возможных вариантов для выбора */
   options: Option[];
   /** Текущие выбранные значения поля, может быть пустым */
-  value: Option[];
+  value: Option;
   /** Callback, вызываемый при выборе варианта */
-  onChange: (value: Option[]) => void;
+  onChange: (value: Option) => void;
   /** Заблокирован ли дропдаун */
   disabled?: boolean;
   /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
-  getTitle: (value: Option[]) => string;
+  getTitle: (value: Option) => string;
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
@@ -62,19 +63,15 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
     };
   }, []);
 
-  const getValues = (values: Option[]) => {
-    return values.map(value => value.value);
+  const getValues = (values: Option) => {
+    return values;
   }
 
   const chooseOption = (option: Option) => {
-    let valueKeys = values.map((value: Option) => value.key);
-    if (valueKeys.includes(option.key)) {
-      props.onChange(values.filter((value: Option) => value.value !== option.value));
-      setValues((prev: any[]) => prev.filter(value => value.value !== option.value));
-    } else {
-      props.onChange([...values, option]); //Не проходит тест
-      // props.onChange([option]); Проходит тест
-      setValues((prev: Option[]) => [...prev, option]);
+    if (values !== option) {
+      props.onChange(option);
+      setValues(option);
+      setOpened(false);
     }
   }
 
@@ -110,14 +107,14 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   return (
     <div className={multiDropdownclass} ref={dropdownRef}>
-      <Input value={opened ? inputValue : (values.length === 0 ? '' : props.getTitle(values))} placeholder={props.getTitle(values)} onChange={changeInputValue} disabled={props.disabled || false}
+      <Input value={opened ? inputValue : (values ? props.getTitle(values) : '')} placeholder={props.getTitle(values)} onChange={changeInputValue} disabled={props.disabled || false}
         afterslot={<ArrowDownIcon color="secondary" onClick={toggleSelect} />} onClick={openSelect} />
       {opened &&
         <>
           <div className={s['select-options']}>
             {options.map(
               option =>
-                <div className={cn(s['option'], getValues(values).includes(option.value) && s['option-selected'])} key={option.key} onClick={() => { chooseOption(option) }}>
+                <div className={cn(s['option'], getValues(values)?.value === option.value && s['option-selected'])} key={option.key} onClick={() => { chooseOption(option) }}>
                   {option.value}
                 </div>
             )}

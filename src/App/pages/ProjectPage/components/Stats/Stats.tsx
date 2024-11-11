@@ -5,7 +5,7 @@ import WatcherIcon from './components/WatcherIcon';
 import ForkIcon from './components/ForkIcon';
 import Text from '../../../../../components/Text';
 
-interface StatsProps {
+type StatsProps = {
     stats: {
         stars: number | null;
         forks: number | null;

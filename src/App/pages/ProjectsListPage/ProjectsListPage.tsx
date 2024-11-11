@@ -1,87 +1,62 @@
-import Text from "../../../components/Text";
+import Text from "components/Text";
 import s from "./ProjectsListPage.module.scss"
-import MultiDropdown from "../../../components/MultiDropdown";
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
+import MultiDropdown, { Option } from "components/MultiDropdown";
+import Input from "components/Input";
+import Button from "components/Button";
 import SearchIcon from "./components/SearchIcon";
 import Projects from "./components/Projects";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import Paginator from "./components/Paginator";
+import { observer } from "mobx-react-lite";
+import { useLocalStore } from "utils/useLocalStore";
+import ProjectsListStore from "store/ProjectsListStore";
+import rootStore from "store/RootStore";
+import { mddTypes } from "utils/multidropdownTypes";
 
 const ProjectsListPage = () => {
 
-    const perPage = 9;
-
-    let [page, setPage] = useState<number>(1);
-    let [lastPage, setLastPage] = useState<number>(page);
+    const projectsListStore = useLocalStore(() => new ProjectsListStore())
 
     useEffect(() => {
-        const fetch = async () => {
-            const result = await axios({
-                method: 'get',
-                url: `https://api.github.com/orgs/ktsstudio/repos?per_page=${perPage}&page=${page}`
-            });
+        projectsListStore.getRepos();
+    }, [])
 
-
-            //Обработка страниц для пагинации
-            const linkHeader = result.headers['link'];
-            if (linkHeader) {
-                // Разбиваем Link заголовок на части
-                const links = linkHeader.split(', ');
-                // Находим ссылку с rel="last"
-                const lastPageLink = links.find((link: any) => link.includes('rel="last"'));
-                if (lastPageLink) {
-                    // Извлекаем номер последней страницы из URL
-                    const match = lastPageLink.match(/&page=(\d+)/);
-                    if (match) {
-                        setLastPage(parseInt(match[1], 10));  // Возвращаем номер последней страницы как число
-                    }
-                }
-            }
-
-            setProjects(result.data.map((raw: any) => ({
-                id: raw.id,
-                title: raw.name,
-                desc: raw.description,
-                imgURL: raw.owner.avatar_url,
-                stars: raw.stargazers_count,
-                updated_at: raw.updated_at,
-                url: raw.url,
-                full_name: raw.full_name
-            })))
-        }
-
-        fetch();
-
-    }, [page])
-
-    let [projects, setProjects] = useState([]);
+    const optionsForMultiDropDown = {
+        options: mddTypes,
+        value: mddTypes.find(t => t.key === rootStore.query.getParam('type')) || null,
+        onChange: (option: Option) => { rootStore.query.setParam('type', option.key) },
+        getTitle: (value: Option) => value ? value.value : 'Type'
+    }
 
     return (
-        <div className={s['page']}>
-            <div className={s['title']}>
-                <Text view="title" weight="bold">List of organization repositories</Text>
-            </div>
-            <div className={s['section']}>
-
-                <div className={s['content']}>
-
-                    <div className={s['content-header']}>
-                        <MultiDropdown className={s['content-header-mdd']} options={[]} value={[]} onChange={() => { }} getTitle={() => "Type"} />
-                        <div className={s['search-field']}>
-                            <Input value={""} onChange={() => { }} placeholder="Enter organization name" />
-                            <Button><SearchIcon /></Button>
-                        </div>
-                    </div>
-
-                    <Projects projects={projects} />
-
+        projectsListStore.meta === 'initial' || projectsListStore.meta === 'loading' ?
+            <div>Loading</div>
+            :
+            <div className={s['page']}>
+                <div className={s['title']}>
+                    <Text view="title" weight="bold">List of organization repositories</Text>
                 </div>
-                <Paginator currentPage={page} setPage={setPage} lastPage={lastPage} />
+                <div className={s['section']}>
+
+                    <div className={s['content']}>
+
+                        <div className={s['content-header']}>
+                            <MultiDropdown className={s['content-header-mdd']} options={optionsForMultiDropDown.options} value={optionsForMultiDropDown.value!} onChange={optionsForMultiDropDown.onChange} getTitle={optionsForMultiDropDown.getTitle} />
+                            <div className={s['search-field']}>
+                                <Input value={projectsListStore.search as string} onChange={(v) => projectsListStore.onChangeSearch(v)} placeholder="Enter organization name" />
+                                <Button onClick={() => projectsListStore.getRepos()}><SearchIcon /></Button>
+                            </div>
+                        </div>
+
+                        <Projects projects={projectsListStore.projects} />
+
+                    </div>
+                    {projectsListStore.lastPage > 1 &&
+                        <Paginator currentPage={projectsListStore.currentPage} lastPage={projectsListStore.lastPage} />
+                    }
+                </div>
             </div>
-        </div>
     )
 }
 
-export default ProjectsListPage;
+export default observer(ProjectsListPage);
