@@ -1,7 +1,6 @@
-import { useEffect, useState, type FC } from 'react';
+import { useEffect, type FC } from 'react';
 import s from './Langs.module.scss';
 import Text from '../../../../../components/Text';
-import axios from 'axios';
 import cn from 'classnames';
 import { useLocalStore } from 'utils/useLocalStore';
 import LangsStore from 'store/LangsStore';

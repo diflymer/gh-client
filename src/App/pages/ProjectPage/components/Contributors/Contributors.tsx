@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from 'react';
+import { useEffect, type FC } from 'react';
 import s from './Contributors.module.scss';
 import Text from '../../../../../components/Text';
 import { useLocalStore } from 'utils/useLocalStore';
