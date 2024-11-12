@@ -10,7 +10,7 @@ export type PrivateFields = '_projects' | '_meta' | '_currentPage' | '_lastPage'
 
 export default class ProjectsListStore implements ILocalStore {
 
-    private readonly _perPage: number = 3;
+    private readonly _perPage: number = 9;
 
     private _projects: ProjectModel[] = [];
     private _meta: Meta = Meta.initial;
