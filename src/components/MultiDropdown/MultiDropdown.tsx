@@ -3,7 +3,6 @@ import s from './MultiDropdown.module.scss'
 import Input from '../Input';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
 import cn from 'classnames';
-import { set } from 'mobx';
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */

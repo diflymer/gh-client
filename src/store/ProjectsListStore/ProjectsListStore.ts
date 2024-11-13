@@ -67,20 +67,19 @@ export default class ProjectsListStore implements ILocalStore {
     }
 
     async getRepos() {
-        if (this._search === '') {
-            this._meta = Meta.success;
-            this._projects = [];
-            return;
-        }
 
         this._meta = Meta.loading;
 
         try {
+
+            //Проверка параметров
             const type = rootStore.query.getParam('type') === undefined ? 'all' : rootStore.query.getParam('type');
+            const org = this._search === '' ? 'ktsstudio' : this._search;
+
             const response = await axios<ProjectApi[]>({
                 method: 'get',
                 // url: `https://api.github.com/orgs/ktsstudio/repos`,
-                url: `https://api.github.com/orgs/${this._search}/repos?per_page=${this._perPage}&page=${this._currentPage}&type=${type}`
+                url: `https://api.github.com/orgs/${org}/repos?per_page=${this._perPage}&page=${this._currentPage}&type=${type}`
             });
 
             runInAction(() => {
