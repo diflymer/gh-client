@@ -22,7 +22,7 @@ export type TextProps = {
 const Text: React.FC<TextProps> = ({ className, view = 'p-14', tag: Tag = 'p', weight, children, color, maxLines }) => {
 
     return (
-        <Tag className={cn(className, s.text, s[`text_view-${view}`], s[`text_color-${color}`], s[`text_weight-${weight}`], maxLines && s.text_ellipsis)}
+        <Tag className={cn(className, s.text, s[`text_view-${view}`], s[`text_color-${color}`], s[`text_weight-${weight}`], maxLines && s['text_ellipsis'])}
             style={{ WebkitLineClamp: maxLines }}>
             {children}
         </Tag>

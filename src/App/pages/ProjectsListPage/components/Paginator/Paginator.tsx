@@ -26,7 +26,7 @@ const Paginator: FC<PaginatorProps> = ({ currentPage, lastPage }) => {
     return (
         <div className={s.paginator}>
             <ArrowRightIcon onClick={currentPage === 1 ? () => { } : () => { changePage(currentPage - 1) }} color={currentPage === 1 ? 'secondary' : 'primary'} />
-            <div className={s['pages']}>
+            <div className={s.pages}>
                 {pages[0] !== 1 &&
                     <>
                         <div className={s.page} onClick={() => changePage(1)}>1</div>

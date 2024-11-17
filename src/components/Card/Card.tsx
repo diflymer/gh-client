@@ -25,7 +25,7 @@ export type CardProps = {
 const Card: React.FC<CardProps> = (props) => {
     const cardClassName = cn(
         props.className,
-        s['card']
+        s.card
     )
     return (
         <div className={cardClassName} onClick={props.onClick}>
