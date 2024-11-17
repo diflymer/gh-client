@@ -100,7 +100,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
   }, [inputValue]);
 
   const multiDropdownclass = cn(
-    s['multidropdown'],
+    s.multidropdown,
     props.className
   )
 
@@ -113,7 +113,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
           <div className={s['select-options']}>
             {options.map(
               option =>
-                <div className={cn(s['option'], getValues(values)?.value === option.value && s['option-selected'])} key={option.key} onClick={() => { chooseOption(option) }}>
+                <div className={cn(s.option, getValues(values)?.value === option.value && s['option-selected'])} key={option.key} onClick={() => { chooseOption(option) }}>
                   {option.value}
                 </div>
             )}

@@ -11,7 +11,7 @@ export type CheckBoxProps = Omit<
   onChange: (checked: boolean) => void;
 };
 
-const CheckBox: React.FC<CheckBoxProps> = ({onChange, className, ...props}) => {
+const CheckBox: React.FC<CheckBoxProps> = ({ onChange, className, ...props }) => {
 
   React.useEffect(() => {
     setChecked(props.checked || false);
@@ -25,10 +25,10 @@ const CheckBox: React.FC<CheckBoxProps> = ({onChange, className, ...props}) => {
   };
 
   return (
-    <div className={cn( s['input-check'], className )} onClick={props.disabled ? () => {} : toggleCheck} data-disabled={props.disabled || false} >
+    <div className={cn(s['inputCheck'], className)} onClick={props.disabled ? () => { } : toggleCheck} data-disabled={props.disabled || false} >
       <input hidden={true} type="checkbox" checked={checked} {...props} />
       {checked &&
-        <CheckIcon color={props.disabled ? "primary" : "accent"} width={40} height={40} opacity={props.disabled ? 0.2 : 1} strokeWidth={3.33}/>
+        <CheckIcon color={props.disabled ? "primary" : "accent"} width={40} height={40} opacity={props.disabled ? 0.2 : 1} strokeWidth={3.33} />
       }
     </div>
   )

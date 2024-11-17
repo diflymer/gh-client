@@ -4,6 +4,7 @@ import './styles/styles.scss'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import './config/configureMobX'
+import 'regenerator-runtime'
 
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>
@@ -12,3 +13,7 @@ createRoot(document.getElementById('root')!).render(
   </BrowserRouter>
   // </StrictMode>
 )
+
+if (module.hot) {
+  module.hot.accept()
+}

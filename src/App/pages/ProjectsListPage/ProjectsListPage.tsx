@@ -32,13 +32,13 @@ const ProjectsListPage = () => {
         projectsListStore.meta === 'initial' || projectsListStore.meta === 'loading' ?
             <div>Loading</div>
             :
-            <div className={s['page']}>
-                <div className={s['title']}>
+            <div className={s.page}>
+                <div className={s.title}>
                     <Text view="title" weight="bold">List of organization repositories</Text>
                 </div>
-                <div className={s['section']}>
+                <div className={s.section}>
 
-                    <div className={s['content']}>
+                    <div className={s.content}>
 
                         <div className={s['content-header']}>
                             <MultiDropdown className={s['content-header-mdd']} options={optionsForMultiDropDown.options} value={optionsForMultiDropDown.value!} onChange={optionsForMultiDropDown.onChange} getTitle={optionsForMultiDropDown.getTitle} />

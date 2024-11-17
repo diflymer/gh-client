@@ -28,6 +28,10 @@
   "include": [
     "src",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "declaration.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

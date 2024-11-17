@@ -30,7 +30,7 @@ const Contributors: FC<ContributorsProps> = ({ contributorsURL }) => {
                 </div>
                 <div className={s['contributors-body']}>
                     {contributorsStore.conts.map((contributor) => (
-                        <div key={contributor.id} className={s['contributor']}>
+                        <div key={contributor.id} className={s.contributor}>
                             <div className={s['contributor-img']}>
                                 <img src={contributor.avatarUrl} alt='avatar' />
                             </div>
