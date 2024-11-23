@@ -1,4 +1,5 @@
 import { ProjectOwnerApi } from './projectOwner'
+import { ProjectModel } from './project'
 
 export type RepoApi = {
     id: number,
@@ -11,7 +12,9 @@ export type RepoApi = {
     forks_count: number,
     contributors_url: string,
     languages_url: string,
-    owner: ProjectOwnerApi
+    owner: ProjectOwnerApi,
+    updated_at: string,
+    full_name: string
 }
 
 
@@ -28,7 +31,9 @@ export type RepoModel = {
         stars: number,
         forks: number,
         watchers: number
-    }
+    },
+    updatedAt: string,
+    fullName: string
 }
 
 export const normalizeRepo = (from: RepoApi): RepoModel => ({
@@ -44,5 +49,20 @@ export const normalizeRepo = (from: RepoApi): RepoModel => ({
     },
     contributorsUrl: from.contributors_url,
     languagesUrl: from.languages_url,
-    homepage: from.homepage
+    homepage: from.homepage,
+    updatedAt: from.updated_at,
+    fullName: from.full_name
+})
+
+export const changeRepoToProject = (from: RepoModel): ProjectModel => ({
+    id: from.id,
+    title: from.title,
+    desc: from.desc,
+    imgUrl: from.imgUrl,
+    stars: from.stats.stars,
+    updatedAt: new Date(from.updatedAt).toLocaleDateString('en-GB', {
+        day: 'numeric',    // День без ведущего нуля
+        month: 'short'     // Короткое название месяца
+    }),
+    fullName: from.fullName,
 })

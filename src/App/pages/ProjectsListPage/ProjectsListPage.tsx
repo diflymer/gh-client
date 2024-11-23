@@ -12,6 +12,7 @@ import { useLocalStore } from "utils/useLocalStore";
 import ProjectsListStore from "store/ProjectsListStore";
 import rootStore from "store/RootStore";
 import { mddTypes } from "utils/multidropdownTypes";
+import LastSeenRepos from "./components/LastSeenRepos";
 
 const ProjectsListPage = () => {
 
@@ -54,6 +55,7 @@ const ProjectsListPage = () => {
                     {projectsListStore.lastPage > 1 &&
                         <Paginator currentPage={projectsListStore.currentPage} lastPage={projectsListStore.lastPage} />
                     }
+                    <LastSeenRepos />
                 </div>
             </div>
     )

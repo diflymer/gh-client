@@ -1,3 +1,5 @@
+@use 'styles/variables' as *;
+
 .header {
     height: 64px;
     background-color: #F6F8FA;
@@ -6,7 +8,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    padding: 0 100px;
+    padding: 0 $space-app-x;
+
+    @media (max-width: 768px) {
+        padding: 0 0;
+    }
 
     .left-part {
         display: flex;

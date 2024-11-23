@@ -1,6 +1,15 @@
+// .projects {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: space-between;
+//     column-gap: 20px;
+//     row-gap: 80px;
+// }
+
 .projects {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    /* Адаптивные колонки */
+    justify-items: center;
+    gap: 30px 20px;
 }

@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .projects {
+        display: flex;
+        flex-wrap: nowrap;
+        column-gap: 20px;
+        overflow-x: scroll;
+        padding: 20px;
+    }
+}

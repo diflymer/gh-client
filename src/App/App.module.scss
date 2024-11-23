@@ -3,6 +3,10 @@
 .app {
     padding: 0 $space-app-x;
     padding-bottom: $space-app-bottom;
+
+    @media (max-width: 768px) {
+        padding: 0 0;
+    }
 }
 
 .projects-bg {
