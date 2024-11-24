@@ -1,0 +1,50 @@
+.gitGraphContainer {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.gitGraphHeader {
+    text-align: center;
+}
+
+.gitGraphLoading {
+    text-align: center;
+    color: #27ae60;
+}
+
+.gitGraphWrapper {
+    overflow-x: auto;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.gitGraphGreen {
+    background-color: #3d5548;
+    color: #ffffff;
+}
+
+.gitGraphCommitMessage {
+    font-style: italic;
+    color: #145a32;
+}
+
+.gitGraphCommitHash {
+    font-size: 0.9em;
+    color: #2ecc71;
+}
+
+.gitGraphBranch {
+    background-color: #145a32;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.gitGraphDot {
+    size: 8px;
+    color: white;
+    border: 4px solid #27ae60;
+    background-color: #27ae60;
+}

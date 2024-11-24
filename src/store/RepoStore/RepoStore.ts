@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "config/axiosConfig";
 import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { RepoModel, RepoApi, normalizeRepo, changeRepoToProject, ProjectModel } from "store/models/gitHub";
 import { Meta } from "utils/meta";
@@ -31,7 +31,7 @@ export default class RepoStore implements ILocalStore {
     async getRepo(owner: string, repo: string) {
 
         try {
-            const response = await axios<RepoApi>({
+            const response = await apiClient<RepoApi>({
                 method: 'get',
                 url: `https://api.github.com/repos/${owner}/${repo}`,
             });

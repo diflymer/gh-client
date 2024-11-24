@@ -343,6 +343,18 @@
   dependencies:
     levn "^0.4.1"
 
+"@gitgraph/core@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@gitgraph/core/-/core-1.5.0.tgz#fc27924b82eabc5fa1f90480df5239e0c84dcafa"
+  integrity sha512-8CeeHbkKoFHM1y9vfjYiHyEpzl1mEhVrg5c/eFgDBsntOYswoDKU2yOf6DjtVINcE60wmcuynBSJqjMkQo07Ww==
+
+"@gitgraph/react@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@gitgraph/react/-/react-1.6.0.tgz#45783da838d975c225849766c337028a92cd3f14"
+  integrity sha512-cLFNZDoEiNbsnMfdT82zeZti5saYghQamfCbTpVvCRr+BrrQ/k94glkZqYPXKKNTEqbQV6L9JeOfAk1hNiFYXA==
+  dependencies:
+    "@gitgraph/core" "1.5.0"
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.1.tgz#17c55ca7d426733fe3c561906b8173c336b40a77"
@@ -1695,6 +1707,11 @@ get-tsconfig@^4.7.5:
   integrity sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==
   dependencies:
     resolve-pkg-maps "^1.0.0"
+
+gitgraph.js@^1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/gitgraph.js/-/gitgraph.js-1.15.2.tgz#e00d53756d9c93c77cc2206889c8783b04516c00"
+  integrity sha512-RlWwoTibO8o0MZVAVNvT06QrqXPKjAxSlM+Xdek1CG1r1/MJoT5ADwfWNK9+T0rMPv3Ed678WIlNcfEpW/Htow==
 
 github-markdown-css@^5.7.0:
   version "5.7.0"

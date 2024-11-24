@@ -1,4 +1,5 @@
-import axios from "axios";
+
+import apiClient from "config/axiosConfig";
 import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { ContributorModel, ContributorApi, normalizeContributors } from "store/models/gitHub";
 import { Meta } from "utils/meta";
@@ -31,8 +32,10 @@ export default class ContributorsStore implements ILocalStore {
 
     async getContributors(contributorsUrl: string): Promise<void> {
 
+        this._meta = Meta.loading;
+
         try {
-            const response = await axios<ContributorApi[]>({
+            const response = await apiClient<ContributorApi[]>({
                 method: 'get',
                 url: contributorsUrl
             });

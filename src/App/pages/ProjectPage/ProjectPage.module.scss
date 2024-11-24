@@ -38,6 +38,10 @@
         .contributors-langs {
             display: flex;
             gap: 80px;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
         }
 
     }

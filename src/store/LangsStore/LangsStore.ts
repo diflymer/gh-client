@@ -1,4 +1,5 @@
-import axios from "axios";
+
+import apiClient from "config/axiosConfig";
 import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { LangModel } from "store/models/gitHub";
 import { Meta } from "utils/meta";
@@ -32,7 +33,7 @@ export default class LangsStore implements ILocalStore {
     async getLangs(langsUrl: string): Promise<void> {
 
         try {
-            const response = await axios({
+            const response = await apiClient({
                 method: 'get',
                 url: langsUrl
             });

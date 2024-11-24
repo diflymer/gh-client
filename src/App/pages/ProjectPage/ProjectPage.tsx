@@ -16,6 +16,9 @@ import RepoStore from 'store/RepoStore';
 import { useLocalStore } from 'utils/useLocalStore';
 import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';
+import GitGraphComponent from './components/GitGraph';
+
+
 
 const ProjectPage = () => {
 
@@ -48,6 +51,7 @@ const ProjectPage = () => {
                             </a>
                         </div>
                     }
+                    <GitGraphComponent params={params} />
                     <Topics topics={toJS(repoStore.repo.topics)} />
                     <Stats stats={toJS(repoStore.repo.stats)} />
                     <div className={s['contributors-langs']}>

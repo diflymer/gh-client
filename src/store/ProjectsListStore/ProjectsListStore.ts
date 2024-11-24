@@ -1,10 +1,10 @@
-import axios from "axios";
 import { ILocalStore } from "../../utils/useLocalStore";
 import { Meta } from "../../utils/meta";
 import { action, computed, IReactionDisposer, makeObservable, observable, reaction, runInAction } from "mobx";
 import { normalizeProject, ProjectApi, ProjectModel } from '../models/gitHub'
 import rootStore from "../RootStore";
 import { ParsedQs } from "qs";
+import apiClient from "config/axiosConfig";
 
 export type PrivateFields = '_projects' | '_meta' | '_currentPage' | '_lastPage' | '_search';
 
@@ -82,7 +82,8 @@ export default class ProjectsListStore implements ILocalStore {
             const type = rootStore.query.getParam('type') === undefined ? 'all' : rootStore.query.getParam('type');
             const org = this._search === '' ? 'ktsstudio' : this._search;
 
-            const response = await axios<ProjectApi[]>({
+
+            const response = await apiClient<ProjectApi[]>({
                 method: 'get',
                 // url: `https://api.github.com/orgs/ktsstudio/repos`,
                 url: `https://api.github.com/orgs/${org}/repos?per_page=${this._perPage}&page=${this._currentPage}&type=${type}`

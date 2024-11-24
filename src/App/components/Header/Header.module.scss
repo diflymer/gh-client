@@ -11,7 +11,7 @@
     padding: 0 $space-app-x;
 
     @media (max-width: 768px) {
-        padding: 0 0;
+        padding: 0 $space-app-x-mobile;
     }
 
     .left-part {
