@@ -1,8 +1,8 @@
 
 export type ContributorApi = {
-    sha: string
-    message: string,
-    author: commit.commit.author.name,
+    id: number;
+    login: string;
+    avatar_url: string;
 }
 export type ContributorModel = {
     id: number;

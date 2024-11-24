@@ -1,5 +1,4 @@
 import Text from 'components/Text';
-import Card from 'components/Card';
 import s from './LastSeenRepos.module.scss';
 import LastSeenReposStore from 'store/LastSeenReposStore';
 import { useLocalStore } from 'utils/useLocalStore';

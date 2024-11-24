@@ -1,6 +1,6 @@
 import { ILocalStore } from "../../utils/useLocalStore";
 import { Meta } from "../../utils/meta";
-import { action, computed, IReactionDisposer, makeObservable, observable, reaction, runInAction } from "mobx";
+import { computed, makeObservable, observable } from "mobx";
 import { ProjectModel } from '../models/gitHub'
 
 type PrivateFields = '_lastSeenProjects' | '_meta';
