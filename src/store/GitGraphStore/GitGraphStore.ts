@@ -4,7 +4,7 @@ import { Params } from "react-router-dom";
 import { Meta } from "utils/meta";
 import { ILocalStore } from "utils/useLocalStore";
 
-type PrivateFields = '_commits' | '_metaBranches' | '_metaCommits' | '_branches' | '_currentBranch';
+type PrivateFields = '_metaBranches' | '_metaCommits' | '_branches' | '_currentBranch';
 
 type Branch = {
     name: string;
@@ -54,7 +54,7 @@ export default class GitGraphStore implements ILocalStore {
 
     constructor(params: Readonly<Params<string>>) {
         makeObservable<GitGraphStore, PrivateFields>(this, {
-            _commits: observable,
+            // _commits: observable,
             _branches: observable,
             _metaBranches: observable,
             _metaCommits: observable,

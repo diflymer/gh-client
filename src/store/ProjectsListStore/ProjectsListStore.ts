@@ -69,7 +69,7 @@ export default class ProjectsListStore implements ILocalStore {
 
     onSearchButtonClick() {
         rootStore.query.setParam('page', '1');
-        // this.getRepos();
+        this.getRepos();
     }
 
     async getRepos() {

@@ -48,7 +48,9 @@ const ProjectsListPage = () => {
                                 <Button onClick={() => projectsListStore.onSearchButtonClick()}><SearchIcon /></Button>
                             </div>
                         </div>
-
+                        {projectsListStore.meta === 'error' &&
+                            <div>Not Found</div>
+                        }
                         <Projects projects={projectsListStore.projects} />
 
                     </div>
