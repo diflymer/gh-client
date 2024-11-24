@@ -36,7 +36,8 @@ export default class ProjectsListStore implements ILocalStore {
                 lastPage: computed,
                 search: computed,
                 getRepos: action,
-                onChangeSearch: action
+                onChangeSearch: action,
+                onSearchButtonClick: action
             })
     }
 
@@ -64,6 +65,11 @@ export default class ProjectsListStore implements ILocalStore {
     onChangeSearch(v: string) {
         this._search = v;
         rootStore.query.setParam('search', v);
+    }
+
+    onSearchButtonClick() {
+        rootStore.query.setParam('page', '1');
+        // this.getRepos();
     }
 
     async getRepos() {

@@ -45,7 +45,7 @@ const ProjectsListPage = () => {
                             <MultiDropdown className={s['content-header-mdd']} options={optionsForMultiDropDown.options} value={optionsForMultiDropDown.value!} onChange={optionsForMultiDropDown.onChange} getTitle={optionsForMultiDropDown.getTitle} />
                             <div className={s['search-field']}>
                                 <Input value={projectsListStore.search as string} onChange={(v) => projectsListStore.onChangeSearch(v)} placeholder="Enter organization name" />
-                                <Button onClick={() => projectsListStore.getRepos()}><SearchIcon /></Button>
+                                <Button onClick={() => projectsListStore.onSearchButtonClick()}><SearchIcon /></Button>
                             </div>
                         </div>
 
