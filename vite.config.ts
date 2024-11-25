@@ -28,5 +28,6 @@ export default defineConfig({
         api: "modern"
       }
     }
-  }
+  },
+  base: "/hw4"
 })

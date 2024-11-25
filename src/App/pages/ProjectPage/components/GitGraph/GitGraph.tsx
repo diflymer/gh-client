@@ -18,7 +18,7 @@ const GitGraphComponent: React.FC<GitGraphProps> = ({ params }) => {
 
     useEffect(() => {
         gitGraphStore.getBranches();
-        gitGraphStore.getCommits();
+        // gitGraphStore.getCommits();
     }, []);
 
     // Зелёный стиль

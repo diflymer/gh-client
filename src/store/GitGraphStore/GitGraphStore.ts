@@ -151,7 +151,9 @@ export default class GitGraphStore implements ILocalStore {
             return this.currentBranch;
         },
         (branch) => {
-            this.getCommits(branch);
+            if (branch) {
+                this.getCommits(branch);
+            }
         }
     )
 
