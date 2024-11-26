@@ -1,0 +1,42 @@
+@use 'styles/variables.scss' as *;
+
+.search-field {
+    display: flex;
+    gap: $space-l;
+    position: relative;
+
+    p {
+        display: flex;
+        align-items: center;
+    }
+
+    .select-orgs {
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+        border-radius: $border-radius;
+        overflow: hidden;
+
+        .org {
+            width: 100%;
+            height: 48px;
+            padding: $space-s $space-xs;
+            background-color: white;
+            border: 1px solid #fff;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 400;
+
+            &:hover {
+                color: #AFADB5;
+            }
+
+            &-selected {
+                color: $brand;
+            }
+        }
+    }
+
+}

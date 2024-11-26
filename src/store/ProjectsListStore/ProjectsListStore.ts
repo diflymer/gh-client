@@ -3,11 +3,9 @@ import { Meta } from "../../utils/meta";
 import { action, computed, IReactionDisposer, makeObservable, observable, reaction, runInAction } from "mobx";
 import { normalizeProject, ProjectApi, ProjectModel } from '../models/gitHub'
 import rootStore from "../RootStore";
-import { ParsedQs } from "qs";
 import apiClient from "config/axiosConfig";
-import debounce from 'lodash.debounce';
 
-export type PrivateFields = '_projects' | '_meta' | '_currentPage' | '_lastPage' | '_search';
+export type PrivateFields = '_projects' | '_meta' | '_currentPage' | '_lastPage';
 
 export default class ProjectsListStore implements ILocalStore {
 
@@ -16,14 +14,9 @@ export default class ProjectsListStore implements ILocalStore {
     private _projects: ProjectModel[] = [];
     private _meta: Meta = Meta.initial;
 
-    private debouncedSearch: () => void;
-
     //Пагинация
     private _currentPage: number = rootStore.query.getParam('page') ? Number(rootStore.query.getParam('page')) : 1;
     private _lastPage: number = 1;
-
-    //Поиск
-    private _search: string | ParsedQs | string[] | ParsedQs[] = rootStore.query.getParam('search') === undefined ? '' : rootStore.query.getParam('search')!;
 
     constructor() {
         makeObservable<ProjectsListStore, PrivateFields>(this,
@@ -32,17 +25,12 @@ export default class ProjectsListStore implements ILocalStore {
                 _meta: observable,
                 _currentPage: observable,
                 _lastPage: observable,
-                _search: observable,
                 projects: computed,
                 meta: computed,
                 currentPage: computed,
                 lastPage: computed,
-                search: computed,
                 getRepos: action,
-                onChangeSearch: action,
-                onSearch: action
             })
-        this.debouncedSearch = debounce(this.onSearch.bind(this), 1000);
     }
 
     get projects(): ProjectModel[] {
@@ -61,31 +49,18 @@ export default class ProjectsListStore implements ILocalStore {
         return this._lastPage;
     }
 
-    get search(): string | ParsedQs | string[] | ParsedQs[] {
-        return this._search;
-    }
-
-    onChangeSearch(v: string) {
-        this._search = v;
-        rootStore.query.setParam('search', v);
-        this.debouncedSearch();
-    }
-
-    onSearch() {
-        console.log('searching');
-        rootStore.query.setParam('page', '1');
-        this.getRepos();
-    }
 
     async getRepos() {
 
         this._meta = Meta.loading;
 
+        rootStore.query.setParam('page', '1');
+
         try {
 
             //Проверка параметров
             const type = rootStore.query.getParam('type') === undefined ? 'all' : rootStore.query.getParam('type');
-            const org = this._search === '' ? 'ktsstudio' : this._search;
+            const org = rootStore.query.getParam('search') === '' ? 'ktsstudio' : rootStore.query.getParam('search');
 
 
             const response = await apiClient<ProjectApi[]>({

@@ -1,9 +1,6 @@
 import Text from "components/Text";
 import s from "./ProjectsListPage.module.scss"
 import MultiDropdown, { Option } from "components/MultiDropdown";
-import Input from "components/Input";
-import Button from "components/Button";
-import SearchIcon from "./components/SearchIcon";
 import Projects from "./components/Projects";
 import { useEffect } from "react";
 import Paginator from "./components/Paginator";
@@ -14,6 +11,7 @@ import rootStore from "store/RootStore";
 import { mddTypes } from "utils/multidropdownTypes";
 import LastSeenRepos from "./components/LastSeenRepos";
 import Loader from "components/Loader";
+import SearchField from "./components/SearchField";
 
 
 const ProjectsListPage = () => {
@@ -35,36 +33,33 @@ const ProjectsListPage = () => {
     }
 
     return (
-        projectsListStore.meta === 'initial' || projectsListStore.meta === 'loading' ?
-            <Loader />
-            :
-            <div className={s['page']}>
-                <div className={s['title']}>
-                    <Text view="title" weight="bold">List of organization repositories</Text>
-                </div>
-                <div className={s['section']}>
-
-                    <div className={s['content']}>
-
-                        <div className={s['content-header']}>
-                            <MultiDropdown className={s['content-header-mdd']} options={optionsForMultiDropDown.options} value={optionsForMultiDropDown.value!} onChange={optionsForMultiDropDown.onChange} getTitle={optionsForMultiDropDown.getTitle} />
-                            <div className={s['search-field']}>
-                                <Input value={projectsListStore.search as string} onChange={(v) => projectsListStore.onChangeSearch(v)} placeholder="Enter organization name"
-                                    afterslot={<SearchIcon />} />
-                            </div>
-                        </div>
-                        {projectsListStore.meta === 'error' &&
-                            <div>Not Found</div>
-                        }
-                        <Projects projects={projectsListStore.projects} />
-
-                    </div>
-                    {projectsListStore.lastPage > 1 &&
-                        <Paginator currentPage={projectsListStore.currentPage} lastPage={projectsListStore.lastPage} />
-                    }
-                    <LastSeenRepos />
-                </div>
+        <div className={s['page']}>
+            <div className={s['title']}>
+                <Text view="title" weight="bold">List of organization repositories</Text>
             </div>
+            <div className={s['section']}>
+
+                <div className={s['content']}>
+
+                    <div className={s['content-header']}>
+                        <MultiDropdown className={s['content-header-mdd']} options={optionsForMultiDropDown.options} value={optionsForMultiDropDown.value!} onChange={optionsForMultiDropDown.onChange} getTitle={optionsForMultiDropDown.getTitle} />
+                        <SearchField getRepos={() => projectsListStore.getRepos()} />
+                    </div>
+                    {projectsListStore.meta === 'error' ?
+                        <div>Not Found</div>
+                        :
+                        projectsListStore.meta === 'initial' || projectsListStore.meta === 'loading' ?
+                            <Loader />
+                            :
+                            <Projects projects={projectsListStore.projects} />
+                    }
+                </div>
+                {projectsListStore.lastPage > 1 &&
+                    <Paginator currentPage={projectsListStore.currentPage} lastPage={projectsListStore.lastPage} />
+                }
+                <LastSeenRepos />
+            </div>
+        </div>
     )
 }
 
