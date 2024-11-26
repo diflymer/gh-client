@@ -13,6 +13,8 @@ import ProjectsListStore from "store/ProjectsListStore";
 import rootStore from "store/RootStore";
 import { mddTypes } from "utils/multidropdownTypes";
 import LastSeenRepos from "./components/LastSeenRepos";
+import Loader from "components/Loader";
+
 
 const ProjectsListPage = () => {
 
@@ -25,13 +27,16 @@ const ProjectsListPage = () => {
     const optionsForMultiDropDown = {
         options: mddTypes,
         value: mddTypes.find(t => t.key === rootStore.query.getParam('type')) || null,
-        onChange: (option: Option) => { rootStore.query.setParam('type', option.key) },
+        onChange: (option: Option) => {
+            rootStore.query.setParam('type', option.key)
+            projectsListStore.getRepos();
+        },
         getTitle: (value: Option) => value ? value.value : 'Type'
     }
 
     return (
         projectsListStore.meta === 'initial' || projectsListStore.meta === 'loading' ?
-            <div>Loading</div>
+            <Loader />
             :
             <div className={s['page']}>
                 <div className={s['title']}>
@@ -44,8 +49,8 @@ const ProjectsListPage = () => {
                         <div className={s['content-header']}>
                             <MultiDropdown className={s['content-header-mdd']} options={optionsForMultiDropDown.options} value={optionsForMultiDropDown.value!} onChange={optionsForMultiDropDown.onChange} getTitle={optionsForMultiDropDown.getTitle} />
                             <div className={s['search-field']}>
-                                <Input value={projectsListStore.search as string} onChange={(v) => projectsListStore.onChangeSearch(v)} placeholder="Enter organization name" />
-                                <Button onClick={() => projectsListStore.onSearchButtonClick()}><SearchIcon /></Button>
+                                <Input value={projectsListStore.search as string} onChange={(v) => projectsListStore.onChangeSearch(v)} placeholder="Enter organization name"
+                                    afterslot={<SearchIcon />} />
                             </div>
                         </div>
                         {projectsListStore.meta === 'error' &&

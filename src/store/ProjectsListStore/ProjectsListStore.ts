@@ -5,15 +5,18 @@ import { normalizeProject, ProjectApi, ProjectModel } from '../models/gitHub'
 import rootStore from "../RootStore";
 import { ParsedQs } from "qs";
 import apiClient from "config/axiosConfig";
+import debounce from 'lodash.debounce';
 
 export type PrivateFields = '_projects' | '_meta' | '_currentPage' | '_lastPage' | '_search';
 
 export default class ProjectsListStore implements ILocalStore {
 
-    private readonly _perPage: number = 9;
+    private readonly _perPage: number = 12;
 
     private _projects: ProjectModel[] = [];
     private _meta: Meta = Meta.initial;
+
+    private debouncedSearch: () => void;
 
     //Пагинация
     private _currentPage: number = rootStore.query.getParam('page') ? Number(rootStore.query.getParam('page')) : 1;
@@ -37,10 +40,10 @@ export default class ProjectsListStore implements ILocalStore {
                 search: computed,
                 getRepos: action,
                 onChangeSearch: action,
-                onSearchButtonClick: action
+                onSearch: action
             })
+        this.debouncedSearch = debounce(this.onSearch.bind(this), 1000);
     }
-
 
     get projects(): ProjectModel[] {
         return this._projects;
@@ -65,9 +68,11 @@ export default class ProjectsListStore implements ILocalStore {
     onChangeSearch(v: string) {
         this._search = v;
         rootStore.query.setParam('search', v);
+        this.debouncedSearch();
     }
 
-    onSearchButtonClick() {
+    onSearch() {
+        console.log('searching');
         rootStore.query.setParam('page', '1');
         this.getRepos();
     }

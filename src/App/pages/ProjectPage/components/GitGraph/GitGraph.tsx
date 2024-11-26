@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { Gitgraph } from "@gitgraph/react";
+import { Gitgraph, Orientation } from "@gitgraph/react";
 import { templateExtend, TemplateName } from "@gitgraph/react";
 import GitGraphStore from "store/GitGraphStore";
 import styles from "./GitGraph.module.scss";
 import { useLocalStore } from "utils/useLocalStore";
 import MultiDropdown from "components/MultiDropdown";
 import { Params } from "react-router-dom";
+import Loader from "components/Loader";
+
 
 type GitGraphProps = {
     params: Readonly<Params<string>>
@@ -18,7 +20,6 @@ const GitGraphComponent: React.FC<GitGraphProps> = ({ params }) => {
 
     useEffect(() => {
         gitGraphStore.getBranches();
-        // gitGraphStore.getCommits();
     }, []);
 
     // Зелёный стиль
@@ -61,7 +62,7 @@ const GitGraphComponent: React.FC<GitGraphProps> = ({ params }) => {
                 gitGraphStore.metaBranches === 'error' ?
                     <p className={styles.gitGraphError}>Ошибка загрузки ветвей</p>
                     :
-                    <p className={styles.gitGraphLoading}>Загрузка ветвей...</p>
+                    <Loader />
                 : <MultiDropdown options={optionsMdd} value={{ value: gitGraphStore.currentBranch, key: gitGraphStore.currentBranch }} getTitle={(value) => value.value}
                     onChange={(value) => gitGraphStore.chooseBranch(value.value)} />
             }
@@ -70,12 +71,13 @@ const GitGraphComponent: React.FC<GitGraphProps> = ({ params }) => {
                 gitGraphStore.metaCommits === 'error' ?
                     <p className={styles.gitGraphError}>Ошибка загрузки коммитов</p>
                     :
-                    <p className={styles.gitGraphLoading}>Загрузка коммитов...</p>
+                    <Loader />
                 : (
                     <div className={styles.gitGraphWrapper}>
                         <Gitgraph
                             options={{
                                 template: greenTemplate,
+                                orientation: Orientation.VerticalReverse, // Отображение снизу вверх
                             }}
                         >
                             {(gitgraph) => {

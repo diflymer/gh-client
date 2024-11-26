@@ -74,7 +74,6 @@ export default class GitGraphStore implements ILocalStore {
     }
 
     chooseBranch(branch: string) {
-        console.log(branch);
         this._currentBranch = branch;
     }
 
