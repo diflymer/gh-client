@@ -50,11 +50,13 @@ export default class ProjectsListStore implements ILocalStore {
     }
 
 
-    async getRepos() {
+    async getRepos(refresh: boolean = true) {
+
+        if (refresh) {
+            rootStore.query.setParam('page', '1');
+        }
 
         this._meta = Meta.loading;
-
-        rootStore.query.setParam('page', '1');
 
         try {
 
@@ -119,7 +121,7 @@ export default class ProjectsListStore implements ILocalStore {
 
             if (typeof page === 'string') {
                 this._currentPage = parseInt(page, 10) || 1;
-                this.getRepos();
+                this.getRepos(false);
             }
 
         }
