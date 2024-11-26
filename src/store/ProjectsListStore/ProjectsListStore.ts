@@ -60,7 +60,7 @@ export default class ProjectsListStore implements ILocalStore {
 
             //Проверка параметров
             const type = rootStore.query.getParam('type') === undefined ? 'all' : rootStore.query.getParam('type');
-            const org = rootStore.query.getParam('search') === '' ? 'ktsstudio' : rootStore.query.getParam('search');
+            const org = rootStore.query.getParam('search') === undefined ? 'ktsstudio' : rootStore.query.getParam('search');
 
 
             const response = await apiClient<ProjectApi[]>({
