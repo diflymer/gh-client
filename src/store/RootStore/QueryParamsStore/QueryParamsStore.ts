@@ -23,6 +23,7 @@ export default class QueryParamsStore {
         if (!this._navigate) {
             this._navigate = navigate;
         }
+
     }
 
     getParam(key: string) {
@@ -32,7 +33,7 @@ export default class QueryParamsStore {
     setParam(key: string, value: string) {
         set(this._params, key, value);
         if (this._navigate) {
-            this._navigate({ search: qs.stringify(this._params) })
+            this._navigate(`${location.pathname}?${qs.stringify(this._params)}`);
         }
     }
 

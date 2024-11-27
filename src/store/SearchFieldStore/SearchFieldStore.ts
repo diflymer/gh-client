@@ -98,7 +98,6 @@ export default class SearchFieldStore implements ILocalStore {
 
                 if (response.data.total_count !== 0) {
                     this._orgs = response.data.items.map((item: any) => item.login);
-                    console.log(this._orgs);
                     this._meta = Meta.success;
                 } else {
                     this._meta = Meta.error;

@@ -38,22 +38,30 @@ export default class LangsStore implements ILocalStore {
                 url: langsUrl
             });
 
-            let sum = 0;
-            for (let key in response.data) {
-                sum += response.data[key];
-            }
 
-            let langs: LangModel[] = [];
+            let langsFromObj: any = []
+
             for (let key in response.data) {
-                langs.push({
+                langsFromObj.push({
                     name: key,
-                    value: response.data[key],
-                    percentage: +(response.data[key] / sum * 100).toFixed(1),
+                    value: response.data[key]
                 });
             }
 
+            langsFromObj.sort((a: any, b: any) => b.value - a.value);
+            langsFromObj = langsFromObj.slice(0, 5);
+
+            let sum = 0;
+            for (let lang of langsFromObj) {
+                sum += lang.value;
+            }
+
+            for (let lang of langsFromObj) {
+                lang.percentage = ((lang.value / sum) * 100).toFixed(1);
+            }
+
             runInAction(() => {
-                this._langs = langs;
+                this._langs = langsFromObj;
                 this._meta = Meta.success;
             })
 

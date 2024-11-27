@@ -25,12 +25,12 @@ const Langs: FC<LangsProps> = ({ langsURL }) => {
             <div className={s.langs}>
                 <Text view='p-18' weight='bold'>Languages</Text>
                 <div className={s['langs-line']}>
-                    {langsStore.langs.slice(0, 5).map((lang, i) => (
+                    {langsStore.langs.map((lang, i) => (
                         <div key={`line-${lang.name}`} className={s[`langs-line-colors-${i + 1}`]} style={{ width: `${lang.percentage}%` }}></div>
                     ))}
                 </div>
                 <div className={s['langs-list']}>
-                    {langsStore.langs.slice(0, 5).map((lang, i) => (
+                    {langsStore.langs.map((lang, i) => (
                         <div className={s['langs-list__item']} key={lang.name}>
                             <div className={cn(s['langs-list__item-circle'], s[`langs-line-colors-${i + 1}`])}></div>
                             <Text view='p-14' weight='medium'>{lang.name}</Text>
