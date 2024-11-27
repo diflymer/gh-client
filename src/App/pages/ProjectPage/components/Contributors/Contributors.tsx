@@ -29,17 +29,25 @@ const Contributors: FC<ContributorsProps> = ({ contributorsURL }) => {
                     <span className={s.count}>{contributorsStore.conts.length}</span>
                 </div>
                 <div className={s['contributors-body']}>
-                    {contributorsStore.conts.map((contributor) => (
-                        <div key={contributor.id} className={s['contributor']}>
-                            <div className={s['contributor-img']}>
-                                <img src={contributor.avatarUrl} alt='avatar' />
+                    {contributorsStore.conts.slice(0, 4).map((contributor) => {
+                        return (
+                            <div key={contributor.id} className={s['contributor']}>
+                                <div className={s['contributor-img']}>
+                                    <img src={contributor.avatarUrl} alt='avatar' />
+                                </div>
+                                <Text view='p-16' weight='bold'>{contributor.login}</Text>
+                                <Text view='p-16' color='secondary'>{''}</Text>
                             </div>
-                            <Text view='p-16' weight='bold'>{contributor.login}</Text>
-                            <Text view='p-16' color='secondary'>{''}</Text>
-                        </div>
-                    ))}
+                        )
+
+                    })}
                 </div>
-            </div>
+                {contributorsStore.conts.length > 4 &&
+                    <div className={s['contributors-more']}>
+                        <Text view='p-16' color='secondary'>...</Text>
+                    </div>
+                }
+            </div >
     )
 }
 

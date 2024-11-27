@@ -67,7 +67,6 @@ export default class ProjectsListStore implements ILocalStore {
 
             const response = await apiClient<ProjectApi[]>({
                 method: 'get',
-                // url: `https://api.github.com/orgs/ktsstudio/repos`,
                 url: `https://api.github.com/orgs/${org}/repos?per_page=${this._perPage}&page=${this._currentPage}&type=${type}`
             });
 

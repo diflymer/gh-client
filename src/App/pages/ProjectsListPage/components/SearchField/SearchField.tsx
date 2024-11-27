@@ -38,8 +38,9 @@ const SearchField: FC<SearchFieldProps> = ({ getRepos }) => {
         <div className={s['search-field']} ref={dropdownRef}>
             <Input value={searchFieldStore.search as string}
                 onChange={(v) => searchFieldStore.onChangeSearch(v)} placeholder="Enter organization name"
-                onClick={() => {
+                onFocus={() => {
                     searchFieldStore.setOrgsOpened(true)
+                    searchFieldStore.getOrgs()
                 }}
                 afterslot={<SearchIcon />} />
             {searchFieldStore.meta === 'loading' ?

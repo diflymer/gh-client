@@ -21,6 +21,11 @@ const Paginator: FC<PaginatorProps> = ({ currentPage, lastPage }) => {
 
     const changePage = (page: number): void => {
         rootStore.query.setParam('page', page.toString())
+        window.scrollTo({
+            top: 0, // Отступ сверху
+            left: 0, // Отступ слева
+            behavior: 'smooth', // Плавная прокрутка
+        });
     }
 
     return (

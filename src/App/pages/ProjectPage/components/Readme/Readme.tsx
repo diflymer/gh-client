@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import s from './Readme.module.scss'
 import 'github-markdown-css/github-markdown.css'
 import cn from 'classnames'
+import apiClient from "config/axiosConfig";
 
 const Readme = () => {
 
@@ -11,7 +11,7 @@ const Readme = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            const result = await axios({
+            const result = await apiClient({
                 headers: {
                     Accept: 'application/vnd.github.html+json'
                 },

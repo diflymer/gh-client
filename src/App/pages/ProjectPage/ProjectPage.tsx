@@ -31,6 +31,16 @@ const ProjectPage = () => {
 
     const nav = useNavigate()
 
+    const handleGoBack = () => {
+        const prevUrl = sessionStorage.getItem('prevUrl');
+
+        if (prevUrl) {
+            nav(prevUrl); // Переходим на предыдущий URL с параметрами
+        } else {
+            nav('/'); // Если истории нет, перенаправляем на главную
+        }
+    };
+
     return (
         repoStore.meta === 'error' ?
             <div>Api limit</div>
@@ -40,7 +50,7 @@ const ProjectPage = () => {
                 :
                 <div className={s.page}>
                     <div className={s['page-header']}>
-                        <ArrowRightIcon className={s['page-header-arrow-right']} onClick={() => nav('/')} width="32" height="32" viewBox="0 0 32 32" />
+                        <ArrowRightIcon className={s['page-header-arrow-right']} onClick={() => handleGoBack()} width="32" height="32" viewBox="0 0 32 32" />
                         <ProjectAvatar imgURL={toJS(repoStore.repo.imgUrl)} />
                         <Text view='title'>{toJS(repoStore.repo.title)}</Text>
                     </div>

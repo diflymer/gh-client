@@ -80,7 +80,6 @@ export default class SearchFieldStore implements ILocalStore {
     }
 
     onSearch() {
-        console.log('searching');
         this.getOrgs();
     }
 
